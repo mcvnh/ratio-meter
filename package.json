@@ -18,6 +18,12 @@
   "contributes": {
     "configuration": {
       "properties": {
+        "ratioMeter.refreshInterval": {
+          "type": "number",
+          "default": 60,
+          "description": "The interval in second to refresh the ratio data."
+        },
+
         "ratioMeter.pairs": {
           "type": "array",
           "default": [

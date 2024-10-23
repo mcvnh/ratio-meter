@@ -5,11 +5,15 @@ import StatusBarService from './services/StatusbarService';
 
 let statusBarService = new StatusBarService();
 
-export async function activate(context: vscode.ExtensionContext) {
+export function activate(context: vscode.ExtensionContext) {
+  reload();
+  context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(reload));
+}
 
+async function reload() {
   await reloadStatusBarItems();
-  setInterval(reloadStatusBarItems, 1000 * 60);
-  context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(reloadStatusBarItems));
+  setInterval(reloadStatusBarItems, ConfigService.refreshInterval());
+  console.log('refresh interval set to', ConfigService.refreshInterval());
 }
 
 export function deactivate() {}

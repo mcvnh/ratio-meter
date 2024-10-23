@@ -25,4 +25,9 @@ export default class ConfigService {
     const pairs = vscode.workspace.getConfiguration('ratioMeter').get('pairs') as PairItem[];
     return pairs;
   }
+
+  static refreshInterval() {
+    const interval = vscode.workspace.getConfiguration('ratioMeter').get('refreshInterval') as number || 60;
+    return interval * 1000;
+  }
 }
