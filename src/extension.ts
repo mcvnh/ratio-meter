@@ -2,7 +2,6 @@ import * as vscode from 'vscode';
 import ConfigService, { PairItem } from './services/ConfigService';
 import BinanceService from './services/BinanceService';
 import StatusBarService from './services/StatusbarService';
-import { stat } from 'fs';
 
 let statusBarService = new StatusBarService();
 
