@@ -7,26 +7,26 @@ let statusBarService = new StatusBarService();
 
 export async function activate(context: vscode.ExtensionContext) {
 
-	await reloadStatusBarItems();
-	setInterval(reloadStatusBarItems, 1000 * 60);
-	context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(reloadStatusBarItems));
+  await reloadStatusBarItems();
+  setInterval(reloadStatusBarItems, 1000 * 60);
+  context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(reloadStatusBarItems));
 }
 
 export function deactivate() {}
 
 async function reloadStatusBarItems() {
-	console.log('[RATIO-METER]: reloading status bar items');
-	const tokenToPrice: { [key: string]: number } = {};
-	const symbols = ConfigService.getSymbols();
-	const pairs = ConfigService.getPairs();
+  console.log('[RATIO-METER]: reloading status bar items');
+  const tokenToPrice: { [key: string]: number } = {};
+  const symbols = ConfigService.getSymbols();
+  const pairs = ConfigService.getPairs();
 
-	for (const symbol of symbols) {
-		tokenToPrice[symbol] = await BinanceService.getPrice(symbol);
-	}
+  for (const symbol of symbols) {
+    tokenToPrice[symbol] = await BinanceService.getPrice(symbol);
+  }
 
-	for (const pair of pairs) {
-		const token1 = pair.symbol1;
-		const token2 = pair.symbol2;
+  for (const pair of pairs) {
+    const token1 = pair.symbol1;
+    const token2 = pair.symbol2;
 
     let message = pair.format;
 
@@ -39,13 +39,13 @@ async function reloadStatusBarItems() {
     const key = getPairName(pair);
     statusBarService.set(key, message);
     statusBarService.show(key);
-	}
+  }
 }
 
 function round(value: number, decimals: number = 4) {
-	return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
+  return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
 
 function getPairName(pair: PairItem) {
-	return pair.label;
+  return pair.label;
 }
