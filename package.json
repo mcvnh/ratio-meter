@@ -24,7 +24,20 @@
             {
               "symbol1": "NEOUSDT",
               "symbol2": "FLMUSDT",
-              "label": "NEO/FLM"
+              "label": "NEO/FLM",
+              "format": "NF([RATIO])"
+            },
+            {
+              "symbol1": "NEOUSDT",
+              "symbol2": "GASUSDT",
+              "label": "NEO/GAS",
+              "format": "NG([RATIO])"
+            },
+            {
+              "symbol1": "GASUSDT",
+              "symbol2": "FLMUSDT",
+              "label": "GAS/FLM",
+              "format": "GF([RATIO])"
             }
           ]
         }

@@ -4,6 +4,7 @@ export interface PairItem {
   symbol1: string
   symbol2: string
   label: string
+  format: string
 }
 
 export default class ConfigService {
